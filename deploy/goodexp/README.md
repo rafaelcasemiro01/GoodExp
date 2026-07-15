@@ -38,7 +38,7 @@ Crie o repositório no GitHub (via [github.com/new](https://github.com/new) ou G
 gh repo create goodexp-landing --private --source=. --push
 
 # ou manualmente, depois de criar o repo vazio no site:
-git remote add origin https://github.com/SEU-USUARIO/goodexp-landing.git
+git remote add origin https://github.com/rafaelcasemiro01/GoodExp.git
 git branch -M main
 git push -u origin main
 ```
