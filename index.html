@@ -165,6 +165,53 @@
 @keyframes waPulse { 0% { box-shadow:0 0 0 0 rgba(43,224,122,0.5); } 70% { box-shadow:0 0 0 16px rgba(43,224,122,0); } 100% { box-shadow:0 0 0 0 rgba(43,224,122,0); } }
 @media (max-width:640px) { .wa-fab:hover .wa-label { max-width:0; margin-right:0; } }
 @media (prefers-reduced-motion:reduce) { .wa-pulse { animation:none; } }
+/* ---- MOBILE (UX pass) ---- */
+.hero-copy { display:none; }
+@media (max-width:640px) {
+  /* Hero: proposta de valor legível como texto + foto de apoio */
+  .hero { margin-top:0; background:linear-gradient(180deg, rgb(18,80,106), rgb(8,54,74)); }
+  .hero-copy { display:block; padding:36px 7vw 6px; text-align:center; }
+  .hero-kicker { font-size:10.5px; font-weight:600; letter-spacing:0.16em; color:#B9FF3D; margin-bottom:14px; }
+  .hero-title { font-size:clamp(30px,9vw,38px); font-weight:300; letter-spacing:-0.02em; line-height:1.15; color:#fff; margin-bottom:12px; }
+  .hero-sub { font-size:14.5px; line-height:1.65; color:#CFEAF2; font-weight:300; max-width:340px; margin:0 auto; }
+  .hero-photo img { height:44svh; min-height:300px; object-fit:cover; object-position:center 46%; }
+  .hero-ctas { position:static; padding:20px 7vw 32px; flex-direction:column; align-items:stretch; gap:12px; background:none; margin-top:-6px; }
+  .hero-ctas .btn-lime, .hero-ctas .btn-ghost { text-align:center; white-space:normal; min-height:48px; display:flex; align-items:center; justify-content:center; }
+  .hero-ctas .btn-lime { padding:15px 24px; font-size:15.5px; }
+  /* Nav: alvo de toque >=44px */
+  .navcta { padding:11px 16px; font-size:12.5px; }
+  .nav { padding:6px 6px 6px 14px; }
+  /* Ritmo vertical: menos deserto entre seções */
+  .results { padding:72px 7vw 64px; }
+  .muted { margin-bottom:44px; }
+  .stats { gap:10px; flex-wrap:nowrap; }
+  .stats > div { flex:1; min-width:0; }
+  .stat-num { font-size:clamp(30px,9vw,44px); }
+  .stat-label { font-size:9.5px; letter-spacing:0.1em; }
+  #computadores { padding:16px 0 72px !important; }
+  .services { padding:36px 5vw 72px; }
+  .security { padding:76px 7vw 64px; }
+  #impressoras { padding:52px 6vw 64px !important; }
+  .faq { padding:64px 6vw; }
+  .final { padding:72px 0 80px !important; }
+  /* Serviços: tabs viram carrossel horizontal com scroll-snap */
+  .glass-panel { padding:18px; }
+  .tabs { flex-wrap:nowrap; justify-content:flex-start; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:18px; margin:0 -18px; padding-left:18px; padding-right:18px; }
+  .tabs::-webkit-scrollbar { display:none; }
+  .tab { flex:none; scroll-snap-align:center; min-width:96px; min-height:44px; }
+  .svc-card { flex-direction:column; gap:16px; padding:22px; }
+  /* FAQ: alvo de toque maior */
+  .faq-q { padding:18px 20px; min-height:56px; }
+  .faq-a { padding:0 20px 20px; }
+  /* FAB não cobre o rodapé: some quando o formulário está visível é complexo; garante margem */
+  footer { padding-bottom:96px; }
+  .wa-fab { right:16px; bottom:calc(16px + env(safe-area-inset-bottom)); }
+}
+/* iOS: inputs >=16px não disparam zoom automático */
+@media (max-width:640px) {
+  .lead-form input, .lead-form select { font-size:16px; }
+  .lead-card { padding:30px 22px; }
+}
 </style>
 </head>
 <body>
@@ -185,6 +232,11 @@
 
   <header class="hero">
     <h1 style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;">GoodExp — Sites que vendem e máquinas que voam: criação de sites, upgrade SSD e manutenção de computadores e impressoras</h1>
+    <div class="hero-copy">
+      <div class="hero-kicker">GOODEXP · A EXPERIÊNCIA QUE VOCÊ MERECE</div>
+      <div class="hero-title">Sites que vendem.<br>Máquinas que voam.</div>
+      <p class="hero-sub">Criação de sites, upgrade SSD e manutenção — a tecnologia do seu negócio funcionando de verdade.</p>
+    </div>
     <a class="hero-photo" href="https://wa.me/5514996169791">
       <img src="img/hero-macbook-dark.jpg" alt="MacBook exibindo o site da GoodExp — Sites que vendem e máquinas que voam" fetchpriority="high">
     </a>
@@ -347,7 +399,7 @@ SERVICES.forEach((s, i) => {
   const el = document.createElement("div");
   el.className = "tab";
   el.innerHTML = svgIcon(s.paths, 20) + `<span>${s.label}</span>`;
-  el.addEventListener("click", () => selectTab(i));
+  el.addEventListener("click", () => { selectTab(i); if (matchMedia('(max-width:640px)').matches) el.parentElement.scrollTo({left: el.offsetLeft - el.parentElement.clientWidth/2 + el.clientWidth/2, behavior:'smooth'}); });
   tabsEl.appendChild(el);
 });
 selectTab(0);
