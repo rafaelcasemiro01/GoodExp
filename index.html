@@ -107,7 +107,7 @@
   .pill.ghost:hover { background:#fff; border-color:var(--ink); }
 
   /* ---------- NAV ---------- */
-  .nav { position:sticky; top:0; z-index:60; background:rgba(242,241,237,0.82); backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid var(--line-soft); }
+  .nav { position:sticky; top:0; z-index:60; background:rgba(242,241,237,0.5); -webkit-backdrop-filter:saturate(180%) blur(16px); backdrop-filter:saturate(180%) blur(16px); border-bottom:1px solid var(--line-soft); }
   .nav-in { display:flex; align-items:center; gap:26px; height:70px; }
   .brand { display:flex; align-items:center; gap:10px; font-size:16px; font-weight:600; letter-spacing:-0.01em; text-decoration:none; margin-right:auto; }
   .brand svg { width:26px; height:26px; }
@@ -116,8 +116,8 @@
   .wordmark { display:flex; align-items:center; gap:12px; color:var(--ink); text-decoration:none; }
   .wm-tile { height:34px; width:34px; border-radius:9px; display:block; }
   .wm-word { font-size:12.5px; font-weight:600; letter-spacing:0.26em; color:var(--ink); white-space:nowrap; }
-  .ft-tile { height:28px; width:28px; }
-  .ft-word { font-size:11px; letter-spacing:0.24em; color:var(--ink-soft); }
+  .ft-tile { height:34px; width:34px; }
+  .ft-word { font-size:12.5px; font-weight:600; letter-spacing:0.26em; color:var(--ink); }
   .wm-copy { color:var(--grey); letter-spacing:0; font-size:12px; }
   .is-logo { border-radius:0.7cqw; }
   @media (max-width:480px){ .wm-word, .ft-word { display:none; } }
@@ -263,13 +263,14 @@
 
   /* FOOTER */
   footer { border-top:1px solid var(--line); }
-  .ft-in { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:34px 0; flex-wrap:wrap; }
-  .ft-brand { display:flex; align-items:center; gap:10px; font-size:14px; color:var(--ink-soft); }
+  .ft-in { display:flex; justify-content:space-between; align-items:center; gap:24px; padding:40px 0; flex-wrap:wrap; }
+  .ft-brand { display:flex; align-items:center; gap:12px; font-size:14px; color:var(--ink-soft); }
   .ft-brand b { font-weight:700; color:var(--ink); }
   .ft-brand i { font-style:normal; color:var(--accent); font-weight:700; }
-  .ft-links { display:flex; gap:10px; flex-wrap:wrap; }
-  .ft-links a { text-decoration:none; font-size:13px; color:var(--ink-soft); padding:8px 16px; border:1px solid var(--line); border-radius:100px; transition:border-color .15s, background .15s; }
-  .ft-links a:hover { border-color:var(--ink); background:#fff; }
+  .ft-links { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+  .ft-links a { text-decoration:none; font-size:13px; color:var(--ink-soft); padding:10px 20px; border:1px solid var(--line); border-radius:100px; transition:border-color .15s, background .15s, color .15s; }
+  .ft-links a:hover { border-color:var(--ink); background:#fff; color:var(--ink); }
+  @media (min-width:641px){ .ft-links { margin-right:80px; } }
 
   /* WhatsApp FAB */
   .wa-fab { position:fixed; right:22px; bottom:22px; z-index:90; height:58px; min-width:58px; border-radius:100px; background:linear-gradient(135deg,#2BE07A,#1FBD5F); display:flex; align-items:center; padding:0 14px; text-decoration:none; box-shadow:0 12px 30px rgba(31,189,95,0.4); transition:transform .2s, box-shadow .2s; }
@@ -282,6 +283,48 @@
   @media (max-width:640px){ .wa-fab:hover .wa-label{max-width:0;margin-right:0;} .wa-fab{right:16px;bottom:calc(16px + env(safe-area-inset-bottom));} }
 
   a[href]:focus-visible, button:focus-visible, .svc-head:focus-visible, .faq-q:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:6px; }
+
+  /* ---------- MOBILE (UX pass) ---------- */
+  @media (max-width:640px){
+    .wrap { padding:0 22px; }
+    .nav-in { height:60px; gap:14px; }
+    .wm-tile { height:30px; width:30px; }
+    .nav-pill { font-size:12.5px; padding:11px 16px; }
+    /* tighter vertical rhythm */
+    .sec { padding:52px 0; }
+    #resultados.sec, #seguranca.sec, #impressoras.sec { padding-top:8px; }
+    .strip-in { padding:16px 0; gap:6px 0; }
+    /* hierarchy: reduce oversized display headings */
+    .sec-title { font-size:clamp(30px,8.5vw,40px); }
+    .about-lead { font-size:22px; }
+    .final h2 { font-size:clamp(32px,9vw,42px); }
+    .security { padding:44px 22px; border-radius:20px; }
+    .security h2 { font-size:26px; }
+    /* full-width, comfortable tap targets */
+    .pill, .lead-form button { width:100%; justify-content:center; min-height:52px; font-size:15.5px; }
+    .hero-actions, .final .wrap > .pill { width:100%; }
+    .svc-enquire.pill, .print-txt .pill { width:100%; }
+    .final { padding:56px 0 64px; }
+    /* stats 2-up with more breathing room */
+    .stats { gap:26px 18px; padding-top:28px; }
+    .stat .num { font-size:38px; }
+    /* services rows */
+    .svc-head { padding:20px 2px; gap:14px; }
+    .svc-name { font-size:21px; }
+    .svc-body-in { padding:0 2px 24px; }
+    /* printer image sensible height */
+    .print-grid img { max-height:340px; width:auto; margin:0 auto; }
+    .print-grid { text-align:center; }
+    .check-list { align-items:flex-start; text-align:left; display:inline-flex; }
+    /* FOOTER: stack + keep clear of WhatsApp FAB */
+    footer { padding-bottom:96px; }
+    .ft-in { flex-direction:column; align-items:flex-start; gap:18px; padding:28px 0; }
+    .ft-links { width:100%; }
+    .ft-links a { flex:1; text-align:center; }
+    /* form spacing */
+    .lead-card { padding:30px 22px; }
+    .lead-form input, .lead-form select { font-size:16px; }
+  }
 </style>
 </head>
 <body>
@@ -320,7 +363,7 @@
           <div class="is-hero">
             <div class="is-title">Tecnologia que <i><br>simplesmente funciona.</i></div>
             <div class="is-sub">Do site que <b>conquista clientes</b> ao computador que <b>nunca te deixa na mão</b>. Desenvolvimento moderno e suporte técnico confiável <b>em um só lugar</b>, sem juridiquês.</div>
-            <div class="is-ctas"><a class="is-btnp" href="https://wa.me/5514996169791">Solicitar orçamento&nbsp;→</a><a class="is-btng" href="#servicos">Ver serviços</a></div>
+            <div class="is-ctas"><a class="is-btnp" href="https://wa.me/5514996169791" target="_blank" rel="noopener">Solicitar orçamento&nbsp;→</a><a class="is-btng" href="#servicos">Ver serviços</a></div>
           </div>
         </div>
       </div>
@@ -408,7 +451,7 @@
             <li><span class="check-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2E6E92" stroke-width="2.5" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Corretiva: diagnóstico e reparo rápidos</li>
             <li><span class="check-ico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2E6E92" stroke-width="2.5" stroke-linecap="round"><path d="m5 13 4 4L19 7"/></svg></span>Preventiva: limpeza e revisão periódica</li>
           </ul>
-          <a class="pill" href="https://wa.me/5514996169791">Agendar visita técnica <span class="ar">→</span></a>
+          <a class="pill" href="https://wa.me/5514996169791" target="_blank" rel="noopener">Agendar visita técnica <span class="ar">→</span></a>
         </div>
         <div class="print-media"><img src="img/printer-epson.jpg" alt="Impressora Epson multifuncional — manutenção corretiva e preventiva GX" width="1200" height="900" loading="lazy" decoding="async"></div>
       </div>
@@ -458,7 +501,7 @@
     <div class="wrap">
       <h2 class="display">Pronto para uma <i>boa experiência?</i></h2>
       <p>Chega de computador lento e de site que não traz cliente. Fale agora e descubra como é ter a tecnologia trabalhando a seu favor.</p>
-      <a class="pill" href="https://wa.me/5514996169791">Falar com o especialista <span class="ar">→</span></a>
+      <a class="pill" href="https://wa.me/5514996169791" target="_blank" rel="noopener">Falar com o especialista <span class="ar">→</span></a>
     </div>
   </section>
 
@@ -472,14 +515,14 @@
       <span class="wm-copy">© 2026</span>
     </div>
     <div class="ft-links">
-      <a href="https://wa.me/5514996169791">WhatsApp</a>
-      <a href="mailto:rafael.casemiro@outlook.com">E-mail</a>
-      <a href="https://www.instagram.com/rafaelcasemiro_">Instagram</a>
+      <a href="https://wa.me/5514996169791" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="mailto:rafael.casemiro@outlook.com" target="_blank" rel="noopener">E-mail</a>
+      <a href="https://www.instagram.com/rafaelcasemiro_" target="_blank" rel="noopener">Instagram</a>
     </div>
   </div>
 </footer>
 
-<a href="https://wa.me/5514996169791" aria-label="Falar com a GX Good eXperience no WhatsApp" class="wa-fab">
+<a href="https://wa.me/5514996169791" target="_blank" rel="noopener" aria-label="Falar com a GX Good eXperience no WhatsApp" class="wa-fab">
   <span class="wa-pulse"></span>
   <span class="wa-label">Fale agora no WhatsApp</span>
   <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.26 8.26 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29Z"/></svg>
@@ -508,7 +551,7 @@ SERVICES.forEach((s, i) => {
       '<span class="svc-toggle">+</span>' +
     '</div>' +
     '<div class="svc-body"><div class="svc-body-in"><div><div class="txt">' + s.desc + '</div>' +
-    '<a class="pill svc-enquire" href="https://wa.me/5514996169791">Pedir orçamento <span class="ar">→</span></a></div></div></div>';
+    '<a class="pill svc-enquire" href="https://wa.me/5514996169791" target="_blank" rel="noopener">Pedir orçamento <span class="ar">→</span></a></div></div></div>';
   const head = row.querySelector(".svc-head");
   const body = row.querySelector(".svc-body");
   const toggle = row.querySelector(".svc-toggle");
@@ -579,7 +622,7 @@ form.addEventListener("submit", async (e) => {
     form.reset();
   } catch (err) {
     console.error(err);
-    msg.innerHTML = 'Ops, algo deu errado. Chame direto no <a href="https://wa.me/5514996169791">WhatsApp</a>.';
+    msg.innerHTML = 'Ops, algo deu errado. Chame direto no <a href="https://wa.me/5514996169791" target="_blank" rel="noopener">WhatsApp</a>.';
     msg.className = "lead-msg err";
   } finally {
     btn.disabled = false;
