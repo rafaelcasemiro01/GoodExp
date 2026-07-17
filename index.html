@@ -572,8 +572,10 @@ form.addEventListener("submit", async (e) => {
     } else {
       console.warn("Supabase não configurado (config.js) — lead não salvo:", data);
     }
-    msg.textContent = "Recebido! Vamos te chamar no WhatsApp em breve. 👋";
+    msg.textContent = "Perfeito! Abrindo o WhatsApp para você enviar… 👋";
     msg.className = "lead-msg ok";
+    const texto = `Olá! Quero um orçamento na GX.%0A%0A*Nome:* ${data.nome}%0A*WhatsApp:* ${data.whatsapp}%0A*Serviço:* ${data.servico}`;
+    window.open(`https://wa.me/5514996169791?text=${texto}`, "_blank");
     form.reset();
   } catch (err) {
     console.error(err);
