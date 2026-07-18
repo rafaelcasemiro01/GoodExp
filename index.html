@@ -164,7 +164,7 @@
   /* ---------- FEATURE STRIP (marquee) ---------- */
   .strip { border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; }
   .marquee { display:flex; overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
-  .mq-track { display:flex; align-items:center; flex:none; white-space:nowrap; padding:20px 0; animation:mq 26s linear infinite; }
+  .mq-track { display:flex; align-items:center; flex:none; white-space:nowrap; padding:20px 0; animation:mq 38s linear infinite; }
   .strip:hover .mq-track { animation-play-state:paused; }
   .mq-item { font-size:clamp(15px,1.8vw,20px); font-weight:400; letter-spacing:-0.01em; color:var(--ink); padding:0 30px; }
   .mq-sep { color:var(--accent); font-size:14px; }
@@ -238,15 +238,25 @@
 
   /* TESTIMONIALS */
   .tst-marquee { overflow:hidden; margin-top:clamp(28px,4vw,48px); cursor:pointer; -webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent); mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent); }
-  .tst-track { display:flex; align-items:stretch; gap:clamp(16px,2vw,24px); width:max-content; animation:tstmq 55s linear infinite; }
+  .tst-track { display:flex; align-items:flex-start; gap:clamp(16px,2vw,24px); width:max-content; animation:tstmq 46s linear infinite; }
   .tst-track.paused { animation-play-state:paused; }
-  .tst { width:min(360px,82vw); flex:none; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:30px 28px; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; gap:16px; margin:0; }
+  .tst { width:min(360px,82vw); height:300px; flex:none; overflow:hidden; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:30px 28px; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; gap:16px; margin:0; }
   .tst-stars { color:var(--accent); font-size:15px; letter-spacing:2px; }
-  .tst blockquote { margin:0; font-size:15.5px; line-height:1.65; color:var(--ink); letter-spacing:-0.01em; }
+  .tst blockquote { margin:0; font-size:15.5px; line-height:1.65; color:var(--ink); letter-spacing:-0.01em; display:-webkit-box; -webkit-line-clamp:6; -webkit-box-orient:vertical; overflow:hidden; }
   .tst figcaption { display:flex; flex-direction:column; gap:2px; margin-top:auto; padding-top:6px; }
   .tst-name { font-weight:600; font-size:14.5px; color:var(--ink); }
-  .tst-role { font-size:12.5px; color:var(--grey); letter-spacing:0.02em; }
+  .tst-role { font-size:12.5px; color:var(--grey); letter-spacing:0.02em; line-height:1.45; }
   .tst-hint { display:block; text-align:center; margin-top:18px; font-size:12.5px; color:var(--grey); letter-spacing:0.02em; }
+  .tst-more { align-self:flex-start; margin-top:-6px; background:none; border:none; padding:0; font:inherit; font-size:13px; font-weight:600; color:var(--accent); cursor:pointer; }
+  .tst-more:hover { text-decoration:underline; }
+  .tst-modal { position:fixed; inset:0; z-index:200; display:none; align-items:center; justify-content:center; padding:24px; background:rgba(20,22,27,0.55); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); }
+  .tst-modal.open { display:flex; }
+  .tst-dialog { background:var(--card); border-radius:20px; padding:40px 36px; max-width:520px; width:100%; box-shadow:var(--shadow-md); position:relative; }
+  .tst-dialog .tst-stars { margin-bottom:16px; }
+  .tst-dialog blockquote { margin:0 0 20px; font-size:16.5px; line-height:1.7; color:var(--ink); }
+  .tst-dialog .tst-name { display:block; font-weight:600; font-size:15px; color:var(--ink); }
+  .tst-dialog .tst-role { display:block; font-size:13px; color:var(--grey); margin-top:2px; }
+  .tst-close { position:absolute; top:16px; right:18px; background:none; border:none; font-size:26px; line-height:1; color:var(--ink-soft); cursor:pointer; }
   @keyframes tstmq { from{transform:translateX(0);} to{transform:translateX(-50%);} }
   @media (prefers-reduced-motion:reduce){ .tst-track { animation:none; flex-wrap:wrap; justify-content:center; } }
 
@@ -514,33 +524,42 @@
         <figure class="tst">
           <div class="tst-stars" aria-label="5 de 5 estrelas">★★★★★</div>
           <blockquote>Antes da manutenção era impossível imprimir mais de uma folha, tinha que ficar segurando a de baixo 😂. Agora ela funciona perfeitamente!</blockquote>
-          <figcaption><span class="tst-name">Mari</span><span class="tst-role">Empresária · Manutenção de impressora</span></figcaption>
+          <figcaption><span class="tst-name">Mari — Empresária</span><span class="tst-role">Serviços prestados: Manutenção preventiva e corretiva de impressora.</span></figcaption>
         </figure>
         <figure class="tst">
           <div class="tst-stars" aria-label="5 de 5 estrelas">★★★★★</div>
           <blockquote>Rafa, me passa o valor dos seus serviços e o pix :) o computador está bem melhor!</blockquote>
-          <figcaption><span class="tst-name">Ju</span><span class="tst-role">Empresária e Artista · Backup, formatação e Pacote Office</span></figcaption>
+          <figcaption><span class="tst-name">Ju — Empresária e Artista</span><span class="tst-role">Serviços prestados: Backup de arquivos + Formatação + Instalação do Pacote Office.</span></figcaption>
         </figure>
         <figure class="tst">
           <div class="tst-stars" aria-label="5 de 5 estrelas">★★★★★</div>
           <blockquote>Gostei da interface, está muito acima da média, muito intuitiva, fácil de mexer — muito melhor que a que fizeram para mim. Mais organizado, simples e ao mesmo tempo com um toque muito profissional!</blockquote>
-          <figcaption><span class="tst-name">Gabriel</span><span class="tst-role">Engenheiro Civil · Site PWA</span></figcaption>
+          <figcaption><span class="tst-name">Gabriel — Engenheiro Civil</span><span class="tst-role">Serviços prestados: Site PWA.</span></figcaption>
         </figure>
         <figure class="tst">
           <div class="tst-stars" aria-label="5 de 5 estrelas">★★★★★</div>
           <blockquote>Amei, amei, excelente trabalho! A atenção que vocês dão para o cliente está fora do contexto da vida de hoje em dia. Muito obrigada mesmo!</blockquote>
-          <figcaption><span class="tst-name">Leila</span><span class="tst-role">Empresária · Manutenção de impressora</span></figcaption>
+          <figcaption><span class="tst-name">Leila — Empresária</span><span class="tst-role">Serviços prestados: Manutenção preventiva e corretiva de impressora.</span></figcaption>
         </figure>
         <figure class="tst">
           <div class="tst-stars" aria-label="5 de 5 estrelas">★★★★★</div>
           <blockquote>Quero tentar expressar parte do que não consigo explanar. Obrigado por participar dessa trajetória em algo importante para mim, para você e para as pessoas que nos cercam. Sem você o resultado seria diferente, certamente. Agradeço sua obstinação e sua astúcia — tanto é que nosso resultado em conjunto foi excelente. Mais uma vez, quero te agradecer e dizer: PARABÉNS!</blockquote>
-          <figcaption><span class="tst-name">João Pedro</span><span class="tst-role">Analista e Desenvolvedor de Sistemas · Site PWA com IA integrada</span></figcaption>
+          <figcaption><span class="tst-name">João Pedro — Analista e Desenvolvedor de Sistemas</span><span class="tst-role">Serviços prestados: Site PWA com inteligência artificial integrada.</span></figcaption>
         </figure>
         </div>
       </div>
       <span class="tst-hint" id="tstHint">Toque para pausar e ler</span>
     </div>
   </section>
+  <div class="tst-modal" id="tstModal" role="dialog" aria-modal="true" aria-label="Depoimento completo">
+    <div class="tst-dialog">
+      <button class="tst-close" id="tstClose" type="button" aria-label="Fechar">×</button>
+      <div class="tst-stars" aria-hidden="true">★★★★★</div>
+      <blockquote id="tstModalText"></blockquote>
+      <span class="tst-name" id="tstModalName"></span>
+      <span class="tst-role" id="tstModalRole"></span>
+    </div>
+  </div>
 
   <!-- FAQ -->
   <section id="faq" class="sec" style="background:var(--paper2); border-top:1px solid var(--line);">
@@ -725,6 +744,32 @@ form.addEventListener("submit", async (e) => {
       const c = node.cloneNode(true);
       c.setAttribute("aria-hidden", "true");
       track.appendChild(c);
+    });
+    // "Ver mais" on clamped (long) testimonials → opens modal with full text
+    const modal = document.getElementById("tstModal");
+    const mText = document.getElementById("tstModalText");
+    const mName = document.getElementById("tstModalName");
+    const mRole = document.getElementById("tstModalRole");
+    function openModal(fig){
+      mText.textContent = fig.querySelector("blockquote").textContent;
+      mName.textContent = fig.querySelector(".tst-name").textContent;
+      mRole.textContent = fig.querySelector(".tst-role").textContent;
+      modal.classList.add("open");
+    }
+    function closeModal(){ modal.classList.remove("open"); }
+    document.getElementById("tstClose").addEventListener("click", closeModal);
+    modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+    track.querySelectorAll(".tst").forEach(fig => {
+      const q = fig.querySelector("blockquote");
+      if (q.scrollHeight - q.clientHeight > 4) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "tst-more";
+        btn.textContent = "Ver mais";
+        btn.addEventListener("click", e => { e.stopPropagation(); openModal(fig); });
+        q.insertAdjacentElement("afterend", btn);
+      }
     });
     // click / tap toggles pause so the user can read
     let paused = false;
