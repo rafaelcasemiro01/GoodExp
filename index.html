@@ -113,6 +113,8 @@
   .brand svg { width:26px; height:26px; }
   .brand b { font-weight:700; }
   .brand i { font-style:normal; color:var(--accent); font-weight:600; }
+  .nav-actions { display:flex; align-items:center; gap:10px; }
+  .nav-svc-m { display:none; }
   .wordmark { display:flex; align-items:center; gap:12px; color:var(--ink); text-decoration:none; }
   .wm-tile { height:34px; width:34px; border-radius:9px; display:block; }
   .wm-word { font-size:12.5px; font-weight:600; letter-spacing:0.26em; color:var(--ink); white-space:nowrap; }
@@ -128,13 +130,13 @@
   @media (max-width:860px) { .nav-links { display:none; } }
 
   /* ---------- HERO ---------- */
-  .hero { padding:0; }
+  .hero { padding:0; background:var(--paper); }
   .hero > .wrap { max-width:none; padding:0; }
 
   /* Laptop frame + live screen overlay (screen is its own container) */
   .imac-wrap { position:relative; width:100%; max-width:none; margin:0 auto; }
   .imac-frame { display:block; width:100%; height:auto; }
-  .laptop-screen { position:absolute; left:19.727%; top:7.899%; width:60.449%; height:61.137%; container-type:inline-size; overflow:hidden; background:var(--paper); display:flex; flex-direction:column; text-align:left; }
+  .laptop-screen { position:absolute; left:19.727%; top:6.849%; width:60.449%; height:66.267%; container-type:inline-size; overflow:hidden; background:var(--paper); display:flex; flex-direction:column; text-align:left; }
   .laptop-screen a { text-decoration:none; }
   .scr-rays { display:none; }
   .is-bar, .is-hero { position:relative; z-index:1; }
@@ -229,7 +231,7 @@
   .check-list { list-style:none; display:flex; flex-direction:column; gap:12px; margin-bottom:30px; }
   .check-list li { display:flex; align-items:center; gap:12px; font-size:14.5px; color:var(--ink); }
   .check-ico { width:22px; height:22px; border-radius:50%; background:var(--accent-tint); display:flex; align-items:center; justify-content:center; flex:none; }
-  @media (max-width:860px){ .print-grid { grid-template-columns:1fr; } .print-grid .print-media { order:-1; } }
+  @media (max-width:860px){ .print-grid { grid-template-columns:1fr; } }
 
   /* FAQ */
   .faq-list { border-top:1px solid var(--line); margin-top:clamp(28px,4vw,48px); max-width:900px; }
@@ -287,9 +289,13 @@
   /* ---------- MOBILE (UX pass) ---------- */
   @media (max-width:640px){
     .wrap { padding:0 22px; }
-    .nav-in { height:60px; gap:14px; }
+    .nav-in { height:60px; gap:12px; }
     .wm-tile { height:30px; width:30px; }
-    .nav-pill { font-size:12.5px; padding:11px 16px; }
+    .nav-links { display:none; }
+    .nav-svc-m { display:inline-flex; }
+    .nav-actions { gap:8px; }
+    .nav-pill { font-size:12.5px; padding:10px 15px; }
+    .nav-pill .ar { display:none; }
     /* tighter vertical rhythm */
     .sec { padding:52px 0; }
     #resultados.sec, #seguranca.sec, #impressoras.sec { padding-top:8px; }
@@ -318,9 +324,10 @@
     .check-list { align-items:flex-start; text-align:left; display:inline-flex; }
     /* FOOTER: stack + keep clear of WhatsApp FAB */
     footer { padding-bottom:96px; }
-    .ft-in { flex-direction:column; align-items:flex-start; gap:18px; padding:28px 0; }
-    .ft-links { width:100%; }
-    .ft-links a { flex:1; text-align:center; }
+    .ft-in { flex-direction:column; align-items:center; text-align:center; gap:20px; padding:36px 4px; }
+    .ft-brand { justify-content:center; }
+    .ft-links { width:100%; justify-content:center; gap:10px; }
+    .ft-links a { flex:1; min-width:92px; text-align:center; }
     /* form spacing */
     .lead-card { padding:30px 22px; }
     .lead-form input, .lead-form select { font-size:16px; }
@@ -342,7 +349,10 @@
       <a href="#impressoras">Impressoras</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="pill nav-pill" href="#contato">Orçamento <span class="ar">→</span></a>
+    <div class="nav-actions">
+      <a class="pill nav-pill nav-svc-m" href="#servicos">Serviços</a>
+      <a class="pill nav-pill" href="#contato">Orçamento <span class="ar">→</span></a>
+    </div>
   </div>
 </header>
 
@@ -352,7 +362,7 @@
   <section class="hero">
     <div class="wrap">
       <div class="imac-wrap">
-        <img class="imac-frame" src="img/laptop-top.jpg" alt="Notebook exibindo o site GX Good eXperience — tecnologia que simplesmente funciona">
+        <img class="imac-frame" src="img/laptop-crop.jpg" alt="Notebook exibindo o site GX Good eXperience — tecnologia que simplesmente funciona">
         <div class="laptop-screen">
           <div class="scr-rays"></div>
           <div class="is-bar">
