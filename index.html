@@ -737,7 +737,8 @@ form.addEventListener("submit", async (e) => {
   function setup(){
     const track = document.getElementById("tstTrack");
     const mq = document.getElementById("tstMq");
-    if (!track || !mq) return;
+    if (!track || !mq || track.dataset.mqReady) return;
+    track.dataset.mqReady = "1";
     // clone the set once for a seamless -50% loop
     const originals = Array.from(track.children);
     originals.forEach(node => {
