@@ -161,12 +161,15 @@
   .is-btnp { font-size:1.9cqw; font-weight:600; padding:1.5cqw 3cqw; border-radius:100px; background:var(--cta); color:#fff; }
   .is-btng { font-size:1.9cqw; font-weight:500; padding:1.5cqw 3cqw; border-radius:100px; background:transparent; border:0.12cqw solid var(--line); color:var(--ink); }
 
-  /* ---------- FEATURE STRIP ---------- */
-  .strip { border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-  .strip-in { display:flex; flex-wrap:wrap; gap:10px 0; padding:22px 0; }
-  .strip-item { flex:1 1 auto; text-align:center; font-size:clamp(15px,1.8vw,20px); font-weight:400; letter-spacing:-0.01em; position:relative; }
-  .strip-item:not(:last-child)::after { content:"·"; position:absolute; right:0; color:var(--grey2); }
-  @media (max-width:640px){ .strip-item { flex:1 1 50%; } .strip-item::after { display:none !important; } }
+  /* ---------- FEATURE STRIP (marquee) ---------- */
+  .strip { border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; }
+  .marquee { display:flex; overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
+  .mq-track { display:flex; align-items:center; flex:none; white-space:nowrap; padding:20px 0; animation:mq 26s linear infinite; }
+  .strip:hover .mq-track { animation-play-state:paused; }
+  .mq-item { font-size:clamp(15px,1.8vw,20px); font-weight:400; letter-spacing:-0.01em; color:var(--ink); padding:0 30px; }
+  .mq-sep { color:var(--accent); font-size:14px; }
+  @keyframes mq { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  @media (prefers-reduced-motion:reduce){ .mq-track { animation:none; } }
 
   /* ---------- SECTION scaffold ---------- */
   section { scroll-margin-top:80px; }
@@ -300,6 +303,8 @@
     .sec { padding:52px 0; }
     #resultados.sec, #seguranca.sec, #impressoras.sec { padding-top:8px; }
     .strip-in { padding:16px 0; gap:6px 0; }
+    .hero { overflow:hidden; }
+    .imac-wrap { width:125%; margin-left:-12.5%; }
     /* hierarchy: reduce oversized display headings */
     .sec-title { font-size:clamp(30px,8.5vw,40px); }
     .about-lead { font-size:22px; }
@@ -380,13 +385,19 @@
     </div>
   </section>
 
-  <!-- FEATURE STRIP -->
+  <!-- FEATURE STRIP (marquee) -->
   <div class="strip">
-    <div class="wrap strip-in">
-      <div class="strip-item">Atendimento ágil</div>
-      <div class="strip-item">Backup seguro</div>
-      <div class="strip-item">Foco em performance</div>
-      <div class="strip-item">Sem juridiquês técnico</div>
+    <div class="marquee">
+      <div class="mq-track" aria-hidden="false">
+        <span class="mq-item">Atendimento ágil</span><span class="mq-sep">✦</span>
+        <span class="mq-item">Foco em performance</span><span class="mq-sep">✦</span>
+        <span class="mq-item">Backup seguro</span><span class="mq-sep">✦</span>
+        <span class="mq-item">Sem juridiquês técnico</span><span class="mq-sep">✦</span>
+        <span class="mq-item">Atendimento ágil</span><span class="mq-sep">✦</span>
+        <span class="mq-item">Foco em performance</span><span class="mq-sep">✦</span>
+        <span class="mq-item">Backup seguro</span><span class="mq-sep">✦</span>
+        <span class="mq-item">Sem juridiquês técnico</span><span class="mq-sep">✦</span>
+      </div>
     </div>
   </div>
 
