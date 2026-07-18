@@ -236,6 +236,20 @@
   .check-ico { width:22px; height:22px; border-radius:50%; background:var(--accent-tint); display:flex; align-items:center; justify-content:center; flex:none; }
   @media (max-width:860px){ .print-grid { grid-template-columns:1fr; } }
 
+  /* TESTIMONIALS */
+  .tst-marquee { overflow:hidden; margin-top:clamp(28px,4vw,48px); cursor:pointer; -webkit-mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent); mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent); }
+  .tst-track { display:flex; align-items:stretch; gap:clamp(16px,2vw,24px); width:max-content; animation:tstmq 90s linear infinite; }
+  .tst-track.paused, .tst-marquee:hover .tst-track { animation-play-state:paused; }
+  .tst { width:min(360px,82vw); flex:none; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:30px 28px; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; gap:16px; margin:0; }
+  .tst-stars { color:var(--accent); font-size:15px; letter-spacing:2px; }
+  .tst blockquote { margin:0; font-size:15.5px; line-height:1.65; color:var(--ink); letter-spacing:-0.01em; }
+  .tst figcaption { display:flex; flex-direction:column; gap:2px; margin-top:auto; padding-top:6px; }
+  .tst-name { font-weight:600; font-size:14.5px; color:var(--ink); }
+  .tst-role { font-size:12.5px; color:var(--grey); letter-spacing:0.02em; }
+  .tst-hint { display:block; text-align:center; margin-top:18px; font-size:12.5px; color:var(--grey); letter-spacing:0.02em; }
+  @keyframes tstmq { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  @media (prefers-reduced-motion:reduce){ .tst-track { animation:none; flex-wrap:wrap; justify-content:center; } }
+
   /* FAQ */
   .faq-list { border-top:1px solid var(--line); margin-top:clamp(28px,4vw,48px); max-width:900px; }
   .faq-item { border-bottom:1px solid var(--line); }
@@ -352,6 +366,7 @@
       <a href="#servicos">Serviços</a>
       <a href="#resultados">Resultados</a>
       <a href="#impressoras">Impressoras</a>
+      <a href="#depoimentos">Depoimentos</a>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="nav-actions">
@@ -372,7 +387,7 @@
           <div class="scr-rays"></div>
           <div class="is-bar">
             <a class="is-logo-link" href="#inicio" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;"><img class="is-logo" src="img/gx-tile-v2.png" alt="GX"><span class="is-word">GOOD&nbsp;EXPERIENCE</span></a>
-            <span class="is-nav"><a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#resultados">Resultados</a><a href="#impressoras">Impressoras</a><a href="#faq">FAQ</a></span>
+            <span class="is-nav"><a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#resultados">Resultados</a><a href="#impressoras">Impressoras</a><a href="#depoimentos">Depoimentos</a><a href="#faq">FAQ</a></span>
             <a class="is-cta" href="#contato">Orçamento&nbsp;→</a>
           </div>
           <div class="is-hero">
@@ -482,8 +497,48 @@
           </ul>
           <a class="pill" href="https://wa.me/5514996169791" target="_blank" rel="noopener">Agendar visita técnica <span class="ar">→</span></a>
         </div>
-        <div class="print-media"><img src="img/printer-epson-l5190.jpg" alt="Impressora multifuncional Epson EcoTank L5190 — manutenção corretiva e preventiva GX" width="690" height="460" loading="lazy" decoding="async"></div>ync"></div>
+        <div class="print-media"><img src="img/printer-epson-l5190.jpg" alt="Impressora multifuncional Epson EcoTank L5190 — manutenção corretiva e preventiva GX" width="690" height="460" loading="lazy" decoding="async"></div>
       </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="depoimentos" class="sec" style="padding-top:0;">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">04 / Depoimentos</span>
+        <h2 class="sec-title display">Quem confia, <i>recomenda</i></h2>
+      </div>
+      <div class="tst-marquee" id="tstMq">
+        <div class="tst-track" id="tstTrack">
+        <figure class="tst">
+          <div class="tst-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+          <blockquote>Antes da manutenção era impossível imprimir mais de uma folha, tinha que ficar segurando a de baixo 😂. Agora ela funciona perfeitamente!</blockquote>
+          <figcaption><span class="tst-name">Mari</span><span class="tst-role">Empresária · Manutenção de impressora</span></figcaption>
+        </figure>
+        <figure class="tst">
+          <div class="tst-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+          <blockquote>Rafa, me passa o valor dos seus serviços e o pix :) o computador está bem melhor!</blockquote>
+          <figcaption><span class="tst-name">Ju</span><span class="tst-role">Empresária e Artista · Backup, formatação e Pacote Office</span></figcaption>
+        </figure>
+        <figure class="tst">
+          <div class="tst-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+          <blockquote>Gostei da interface, está muito acima da média, muito intuitiva, fácil de mexer — muito melhor que a que fizeram para mim. Mais organizado, simples e ao mesmo tempo com um toque muito profissional!</blockquote>
+          <figcaption><span class="tst-name">Gabriel</span><span class="tst-role">Engenheiro Civil · Site PWA</span></figcaption>
+        </figure>
+        <figure class="tst">
+          <div class="tst-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+          <blockquote>Amei, amei, excelente trabalho! A atenção que vocês dão para o cliente está fora do contexto da vida de hoje em dia. Muito obrigada mesmo!</blockquote>
+          <figcaption><span class="tst-name">Leila</span><span class="tst-role">Empresária · Manutenção de impressora</span></figcaption>
+        </figure>
+        <figure class="tst">
+          <div class="tst-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+          <blockquote>Quero tentar expressar parte do que não consigo explanar. Obrigado por participar dessa trajetória em algo importante para mim, para você e para as pessoas que nos cercam. Sem você o resultado seria diferente, certamente. Agradeço sua obstinação e sua astúcia — tanto é que nosso resultado em conjunto foi excelente. Mais uma vez, quero te agradecer e dizer: PARABÉNS!</blockquote>
+          <figcaption><span class="tst-name">João Pedro</span><span class="tst-role">Analista e Desenvolvedor de Sistemas · Site PWA com IA integrada</span></figcaption>
+        </figure>
+        </div>
+      </div>
+      <span class="tst-hint" id="tstHint">Passe o mouse ou toque para pausar e ler</span>
     </div>
   </section>
 
@@ -491,7 +546,7 @@
   <section id="faq" class="sec" style="background:var(--paper2); border-top:1px solid var(--line);">
     <div class="wrap">
       <div class="sec-head">
-        <span class="idx">04 / Dúvidas</span>
+        <span class="idx">05 / Dúvidas</span>
         <h2 class="sec-title display">Perguntas <i>frequentes</i></h2>
       </div>
       <div class="faq-list" id="faqList"></div>
@@ -657,6 +712,32 @@ form.addEventListener("submit", async (e) => {
     btn.disabled = false;
   }
 });
+</script>
+<script>
+(function(){
+  function setup(){
+    const track = document.getElementById("tstTrack");
+    const mq = document.getElementById("tstMq");
+    if (!track || !mq) return;
+    // clone the set once for a seamless -50% loop
+    const originals = Array.from(track.children);
+    originals.forEach(node => {
+      const c = node.cloneNode(true);
+      c.setAttribute("aria-hidden", "true");
+      track.appendChild(c);
+    });
+    // click / tap toggles pause so the user can read
+    let paused = false;
+    const hint = document.getElementById("tstHint");
+    mq.addEventListener("click", () => {
+      paused = !paused;
+      track.classList.toggle("paused", paused);
+      if (hint) hint.textContent = paused ? "Rolagem pausada — toque para retomar" : "Passe o mouse ou toque para pausar e ler";
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", setup);
+  else setup();
+})();
 </script>
 </body>
 </html>
